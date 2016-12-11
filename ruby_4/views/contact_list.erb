@@ -1,0 +1,7 @@
+<h1> Contact List </h1>
+<ul>
+<% @contacts.each do |contact| %>
+	<li><a href="contact_list/<%= contact.id %>"><%= contact.name %></a></li>
+
+<% end %>
+</ul>

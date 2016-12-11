@@ -45,6 +45,16 @@ class Post
 
 end
 
+class Contact
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :name, String
+	property :email, String
+	property :phone, String
+	property :message, Text
+end
+
 # This line will create tables if the tables don't exist. If the tables exist
 # the command will add new columns that weren't there before.
 DataMapper.auto_upgrade!
@@ -62,6 +72,24 @@ end
 
 get '/contact' do
   erb(:contact, { layout: :app_layout })
+end
+
+post '/contact' do
+	puts params
+	Contact.create(params)
+	@contacts = Contact.all
+	erb(:contact_list, { layout: :app_layout})
+end
+
+get "/contact_list" do
+	@contacts = Contact.all
+	erb :contact_list, layout: :app_layout
+end
+
+get "/contact_list/:id" do |id|
+	protected!
+	@contact = Contact.get(id)
+	erb :show_contact, layout: :app_layout
 end
 
 get '/posts/new' do
