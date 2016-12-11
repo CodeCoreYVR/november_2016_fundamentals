@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Awesome Blog!</title>
+    <%# you must put a slash at the begninning and then the static asset name
+        within your public folder. If you have subfolders then you must put the
+        subfolders as well %>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <a href='/'>Home</a>
+    |
+    <a href='/contact'>Contact Us</a>
+    |
+    Your chosen language is: <%= session[:language] %>
+    (change:
+    <a href="/pick_language/English">English</a>
+    |
+    <a href="/pick_language/French">French</a>
+    |
+    <a href="/pick_language/Spanish">Spanish</a>
+
+    )
+    <hr>
+    <%= yield %>
+  </body>
+</html>
